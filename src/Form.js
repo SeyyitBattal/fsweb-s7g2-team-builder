@@ -8,6 +8,11 @@ const Form = () => {
     hobiler: "",
   });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Oyuncu Kaydedildi. Hayırlı olsun :)");
+  };
+
   return (
     <form>
       <label>Yeni Oyuncumuzun Bilgileri:</label>
@@ -35,6 +40,17 @@ const Form = () => {
         type="text"
         placeholder="Hobileri nelerdir?... "
       />
+      <br />
+      <button type="submit">Oyuncuyu Kaydet</button>
+      <br />
+      <button
+        type="button"
+        onClick={() => {
+          setTeamList({ isim: "", email: "", rol: "", hobiler: "" });
+        }}
+      >
+        Bilgileri Temizle
+      </button>
     </form>
   );
 };
