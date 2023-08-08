@@ -5,22 +5,34 @@ const Form = () => {
     isim: "",
     email: "",
     rol: "",
-    hobiler: "",
+    hobi: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Oyuncu Kaydedildi. Hayırlı olsun :)");
+    console.log("Oyuncu Kaydedildi. Hayırlı olsun :)", teamList);
   };
 
+  const handleInputChange = (e) => {
+    const { name, value, checked, type } = e.target;
+    setTeamList({ ...teamList, [name]: type === "checkbox" ? checked : value });
+  };
+
+  useState(() => {
+    console.log("Oyuncu bilgileri güncellendi.", teamList);
+  }, [teamList]);
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>Yeni Oyuncumuzun Bilgileri:</label>
       <hr />
       <label htmlFor="member-name">İsim:</label>
       <input
         id="member-name"
         type="text"
+        name="isim"
+        value={teamList.isim}
+        onChange={handleInputChange}
         placeholder="Yıldızın adını giriniz..."
       />
       <br />
@@ -28,16 +40,29 @@ const Form = () => {
       <input
         id="member-mail"
         type="email"
+        name="email"
+        value={teamList.email}
+        onChange={handleInputChange}
         placeholder="Yıldızın emailini giriniz..."
       />
       <br />
       <label htmlFor="member-rol">Rolü</label>
-      <input id="member-rol" type="text" placeholder="Alacağı görev... " />
+      <input
+        id="member-rol"
+        type="text"
+        name="rol"
+        value={teamList.rol}
+        onChange={handleInputChange}
+        placeholder="Alacağı görev... "
+      />
       <br />
-      <label htmlFor="member-hobi">Hobileri:</label>
+      <label htmlFor="member-hobi">Hobileri</label>
       <input
         id="member-hobi"
         type="text"
+        name="hobi"
+        value={teamList.hobi}
+        onChange={handleInputChange}
         placeholder="Hobileri nelerdir?... "
       />
       <br />
@@ -46,7 +71,7 @@ const Form = () => {
       <button
         type="button"
         onClick={() => {
-          setTeamList({ isim: "", email: "", rol: "", hobiler: "" });
+          setTeamList({ isim: "", email: "", rol: "", hobi: "" });
         }}
       >
         Bilgileri Temizle
