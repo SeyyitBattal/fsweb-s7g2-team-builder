@@ -1,0 +1,8 @@
+.big-form {
+  border: 10px solid black;
+  padding: 3rem;
+  border-radius: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}

@@ -1,6 +1,9 @@
 import { useState } from "react";
+import "./Form.css";
 
-const Form = () => {
+const Form = (props) => {
+  const { duzenlenecekUye } = props;
+
   const [teamList, setTeamList] = useState({
     isim: "",
     email: "",
@@ -23,10 +26,10 @@ const Form = () => {
   }, [teamList]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Yeni Oyuncumuzun Bilgileri:</label>
-      <hr />
-      <label htmlFor="member-name">İsim:</label>
+    <form onSubmit={handleSubmit} className="big-form">
+      <label>Yeni Oyuncumuzun Bilgileri</label>
+      <br />
+      <label htmlFor="member-name">İsim</label>
       <input
         id="member-name"
         type="text"
@@ -35,8 +38,9 @@ const Form = () => {
         onChange={handleInputChange}
         placeholder="Yıldızın adını giriniz..."
       />
+      <button>İsmi Düzenle</button>
       <br />
-      <label htmlFor="member-mail">Email:</label>
+      <label htmlFor="member-mail">Email</label>
       <input
         id="member-mail"
         type="email"
@@ -45,6 +49,7 @@ const Form = () => {
         onChange={handleInputChange}
         placeholder="Yıldızın emailini giriniz..."
       />
+      <button>Emaili Düzenle</button>
       <br />
       <label htmlFor="member-rol">Rolü</label>
       <input
@@ -55,6 +60,7 @@ const Form = () => {
         onChange={handleInputChange}
         placeholder="Alacağı görev... "
       />
+      <button>Rolü Düzenle</button>
       <br />
       <label htmlFor="member-hobi">Hobileri</label>
       <input
@@ -65,6 +71,7 @@ const Form = () => {
         onChange={handleInputChange}
         placeholder="Hobileri nelerdir?... "
       />
+      <button>Hobileri Düzenle</button>
       <br />
       <button type="submit">Oyuncuyu Kaydet</button>
       <br />
@@ -72,6 +79,9 @@ const Form = () => {
         type="button"
         onClick={() => {
           setTeamList({ isim: "", email: "", rol: "", hobi: "" });
+          {
+            console.log("Bilgiler Silindi.");
+          }
         }}
       >
         Bilgileri Temizle
